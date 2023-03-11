@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Morse Code</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0,user-scalable=no' />
+    <script>
+
+        class StringBuider {
+            StringBuider() { }
+            str = ""
+            append = (str) => {
+                this.str += str
+            }
+            toString = () => {
+                return this.str
+            }
+        }
+        function morse() {
+            let text = document.getElementById("inputText").value
+            let morseText = new StringBuider()
+            for (let i = 0; i < text.length; ++i) {
+                morseText.append(morseCode(text.charAt(i)))
+            }
+            document.getElementById("outputText").value = morseText
+        }
+        function decode() {
+            let texts = document.getElementById("inputText").value
+            let decodeText = ""
+            let tmpCode = ""
+            texts.split("\n").forEach(function (element) {
+                let str = new String(element.toString());
+                for (let i = 0; i < str.length; ++i) {
+                    tmpCode += str.charAt(i)
+                    if (str.charAt(i) == " ") {
+                        decodeText += decodeMorse(tmpCode)
+                        tmpCode = ""
+                    }
+                }
+                decodeText += "\n"
+            })
+            document.getElementById("outputText").value = decodeText;
+        }
+        function morseCode(curChar) {
+            let sb = new StringBuider();
+            switch (curChar) {
+                case ' ':
+                    sb.append("/ ");
+                    break;
+                case '\n':
+                    sb.append("\n");
+                    break;
+                case 'a':
+                case 'A':
+                    sb.append("._ ");
+                    break;
+                case 'b':
+                case 'B':
+                    sb.append("_... ");
+                    break;
+                case 'c':
+                case 'C':
+                    sb.append("_._. ");
+                    break;
+                case 'd':
+                case 'D':
+                    sb.append("_.. ");
+                    break;
+                case 'e':
+                case 'E':
+                    sb.append(". ");
+                    break;
+                case 'f':
+                case 'F':
+                    sb.append(".._. ");
+                    break;
+                case 'g':
+                case 'G':
+                    sb.append("__. ");
+                    break;
+                case 'h':
+                case 'H':
+                    sb.append(".... ");
+                    break;
+                case 'i':
+                case 'I':
+                    sb.append(".. ");
+                    break;
+                case 'j':
+                case 'J':
+                    sb.append(".___ ");
+                    break;
+                case 'k':
+                case 'K':
+                    sb.append("_._ ");
+                    break;
+                case 'l':
+                case 'L':
+                    sb.append("._.. ");
+                    break;
+                case 'm':
+                case 'M':
+                    sb.append("__ ");
+                    break;
+                case 'n':
+                case 'N':
+                    sb.append("_. ");
+                    break;
+                case 'o':
+                case 'O':
+                    sb.append("___ ");
+                    break;
+                case 'p':
+                case 'P':
+                    sb.append(".__. ");
+                    break;
+                case 'q':
+                case 'Q':
+                    sb.append("__._ ");
+                    break;
+                case 'r':
+                case 'R':
+                    sb.append("._. ");
+                    break;
+                case 's':
+                case 'S':
+                    sb.append("... ");
+                    break;
+                case 't':
+                case 'T':
+                    sb.append("_ ");
+                    break;
+                case 'u':
+                case 'U':
+                    sb.append(".._ ");
+                    break;
+                case 'v':
+                case 'V':
+                    sb.append("..._ ");
+                    break;
+                case 'w':
+                case 'W':
+                    sb.append(".__ ");
+                    break;
+                case 'x':
+                case 'X':
+                    sb.append("_.._ ");
+                    break;
+                case 'y':
+                case 'Y':
+                    sb.append("_.__ ");
+                    break;
+                case 'z':
+                case 'Z':
+                    sb.append("__.. ");
+                    break;
+                default:
+                    break;
+            }
+            return sb.toString()
+        }
+        function decodeMorse(curCode) {
+            var sb = new StringBuider();
+            switch (curCode) {
+                case "/ ":
+                    sb.append(" ");
+                    break;
+                case "._ ":
+                    sb.append("a");
+                    break;
+                case "_... ":
+                    sb.append("b");
+                    break;
+                case "_._. ":
+                    sb.append("c");
+                    break;
+                case "_.. ":
+                    sb.append("d");
+                    break;
+                case ". ":
+                    sb.append("e");
+                    break;
+                case ".._. ":
+                    sb.append("f");
+                    break;
+                case "__. ":
+                    sb.append("g");
+                    break;
+                case ".... ":
+                    sb.append("h");
+                    break;
+                case ".. ":
+                    sb.append("i");
+                    break;
+                case ".___ ":
+                    sb.append("j");
+                    break;
+                case "_._ ":
+                    sb.append("k");
+                    break;
+                case "._.. ":
+                    sb.append("l");
+                    break;
+                case "__ ":
+                    sb.append("m");
+                    break;
+                case "_. ":
+                    sb.append("n");
+                    break;
+                case "___ ":
+                    sb.append("o");
+                    break;
+                case ".__. ":
+                    sb.append("p");
+                    break;
+                case "__._ ":
+                    sb.append("q");
+                    break;
+                case "._. ":
+                    sb.append("r");
+                    break;
+                case "... ":
+                    sb.append("s");
+                    break;
+                case "_ ":
+                    sb.append("t");
+                    break;
+                case ".._ ":
+                    sb.append("u");
+                    break;
+                case "..._ ":
+                    sb.append("v");
+                    break;
+                case ".__ ":
+                    sb.append("w");
+                    break;
+                case "_.._ ":
+                    sb.append("x");
+                    break;
+                case "_.__ ":
+                    sb.append("y");
+                    break;
+                case "__.. ":
+                    sb.append("z");
+                    break;
+                default:
+                    break;
+            }
+            return sb.toString();
+        }
+
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #optionDiv{
+            width: 500px;
+            height: auto;
+            column-width: 150px;
+            column-count: 2;
+            column-gap: normal;
+        }
+        .button{
+            color: lightblue;
+            width: 150px;
+            transition: all .5s;
+            height: auto;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="bkg">
+    <div calss="description">
+        <h2>英文-摩斯密码转换</h2>
+    </div>
+    <br>
+    <div id="inputDiv">
+        <textarea name="input" id="inputText" cols="80" rows="20" placeholder="请输入..."></textarea>
+    </div>
+    <br>
+    <div id="optionDiv">
+        <div class="buttonDiv">
+            <input type="button" name="morseButton" value="英文->摩斯" onclick="morse()" class="button"/>
+        </div>
+        <div class="buttonDiv">
+            <input type="button" name="englishButton" value="摩斯->英文" onclick="decode()" class="button"/>
+        </div>
+    </div>
+    <br>
+    <div id="resultDiv">
+        <textarea name="output" id="outputText" cols="80" rows="20" placeholder="结果是..." readonly="readonly"></textarea>
+    </div>
+</div>
+
+</body>
+
+</html>
